@@ -1,5 +1,5 @@
-# The first game
-A mini pixel game, where player wander the world and fight with monsters👾
+# The first game👾
+A simple pixel-based game where the player explores the world and fight with monsters.
 
 # About project
-This work was made by using Java and Eclipse.
+This project was developed using Java and Eclipse, following a tutorial. I have added comments throughout the work for explaination to myself.
