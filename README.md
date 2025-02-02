@@ -1,4 +1,4 @@
-# The first demo game
+# The first game
 A mini pixel game, where player wander the world and fight with monsters👾
 
 # About project
