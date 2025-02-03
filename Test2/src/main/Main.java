@@ -9,7 +9,7 @@ public class Main {
 		JFrame window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		window.setResizable(false);
-		window.setTitle("Demo");
+		window.setTitle("Mini Adventure");
 		
 		GamePanel gamePanel = new GamePanel();
 		window.add(gamePanel);

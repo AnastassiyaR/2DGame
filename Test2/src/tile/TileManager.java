@@ -13,17 +13,16 @@ import main.GamePanel;
 public class TileManager {
 	
 	GamePanel gp;
-	public Tile[] tile;
-	public int mapTileNum[][];
+	Tile[] tile;
+	int mapTileNum[][];
 	
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 		
 		tile = new Tile[10];
-		mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
-		
+		mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
 		getTileImage();
-		loadMap("/maps/worldmap.txt");
+		loadMap();
 	}
 	public void getTileImage() {
 		
@@ -33,41 +32,29 @@ public class TileManager {
 			
 			tile[1] = new Tile();
 			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/wall.png"));
-			tile[1].collision = true;
 					
 			tile[2] = new Tile();
 			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water.png"));
-			tile[2].collision = true;
-			
-			tile[3] = new Tile();
-			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/earth.png"));
-			
-			tile[4] = new Tile();
-			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
-			tile[4].collision = true;
-			
-			tile[5] = new Tile();
-			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sand.png"));
 			
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
-	public void loadMap(String filePath) {
+	public void loadMap() {
 		
 		try {
-			InputStream is = getClass().getResourceAsStream(filePath);
+			InputStream is = getClass().getResourceAsStream("/maps/a.txt");
 			// Read each char in the text and save in the buffer
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			
 			int col = 0;
 			int row = 0;
 			
-			while(col < gp.maxWorldCol && row < gp.maxWorldRow) {
+			while(col < gp.maxScreenCol && row < gp.maxScreenRow) {
 				
 				String line = br.readLine();
 				
-				while(col < gp.maxWorldCol) {
+				while(col < gp.maxScreenCol) {
 					
 					String numbers[] = line.split(" ");
 					
@@ -76,7 +63,7 @@ public class TileManager {
 					mapTileNum[col][row] = num;
 					col++;
 				}
-				if(col == gp.maxWorldRow) {
+				if(col == gp.maxScreenCol) {
 					col = 0;
 					row++;
 				}
@@ -88,39 +75,28 @@ public class TileManager {
 	}
 	public void draw(Graphics2D g2) {
 		
-		int worldcol = 0;
-		int worldrow = 0;
+		int col = 0;
+		int row = 0;
+		int x = 0;
+		int y = 0;
 		
-		// the thing is that world map and screen has different coordinates like coordinate for world and screen
-		// The screen is a limited area!!!
-		//so here are formulas
-		
-		while(worldcol < gp.maxWorldCol && worldrow < gp.maxWorldRow) {
+		while(col < gp.maxScreenCol && row < gp.maxScreenRow) {
 			
-			int tileNum = mapTileNum[worldcol][worldrow];
+			int tileNum = mapTileNum[col][row];
 			
-			int worldx = worldcol * gp.tileSize;
-			int worldy = worldrow * gp.tileSize;
+			g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+			col++;
+			x += gp.tileSize;
 			
-			// gp.player.worldx shows where is character on the map; relates to the map
-			// gp.player.screenx is needed so player displace at the center; relates to the screen
-			int screenx = worldx - gp.player.worldX + gp.player.screenX; 
-			int screeny = worldy - gp.player.worldY + gp.player.screenY;
-			
-			// boundary so it draws only tiles which is visible on the screen
-			if(worldx + gp.tileSize > gp.player.worldX - gp.player.screenX && 
-					worldx - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-					worldy + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-					worldy - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-				g2.drawImage(tile[tileNum].image, screenx, screeny, gp.tileSize, gp.tileSize, null);
-			}
-			
-			worldcol++;
-			
-			if(worldcol == gp.maxWorldCol) {
-				worldcol = 0;
-				worldrow++;
+			if(col == gp.maxScreenCol) {
+				col = 0;
+				x = 0;
+				row++;
+				y += gp.tileSize;
 			}
 		}
+		
+
+		
 	}
 }
