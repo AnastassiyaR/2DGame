@@ -20,7 +20,8 @@ public class Main {
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 		
-		gamePanel.startGameThread();
+		gamePanel.setupGame(); // object stuff
+		gamePanel.startGameThread(); // the begin of game?
 
 	}
 

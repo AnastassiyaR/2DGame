@@ -39,11 +39,10 @@ public class GamePanel extends JPanel implements Runnable{
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread; // keep the game working until the stop
 	public CollisionCheck checker = new CollisionCheck(this);
-	
+	public AssetSetter aSetter = new AssetSetter(this);
 	public Player player = new Player(this,keyH);
 	
-	public SuperObject obj[] = new SuperObject[10];
-	// we can display up to 10 objects at the same time.
+	public SuperObject obj[] = new SuperObject[10]; // we can display up to 10 objects at the same time.
 	
 	
 	// Main
@@ -55,6 +54,10 @@ public class GamePanel extends JPanel implements Runnable{
 		this.setFocusable(true); // GamePanel can be focused to receive the key input
 	}
 	
+	public void setupGame() {
+		
+		aSetter.setObject();
+	}
 	
 	public void startGameThread() {
 		
@@ -147,6 +150,13 @@ public class GamePanel extends JPanel implements Runnable{
  		Graphics2D g2 = (Graphics2D)g; // for 2D game
  		
  		tileM.draw(g2);
+ 		
+ 		// We have to know what kind of objects we draw
+ 		for(int i = 0; i < obj.length; i++) {
+ 			if(obj[i] != null) {
+ 				obj[i].draw(g2, this);
+ 			}
+ 		}
  		
  		player.draw(g2);
  		
