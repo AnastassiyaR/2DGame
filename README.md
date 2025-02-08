@@ -1,4 +1,4 @@
-# The first game👾
+# The first mini game👾
 A simple pixel-based game where the player explores the world and fight with monsters.
 
 # About the project
