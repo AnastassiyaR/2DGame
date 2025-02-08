@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public Player player = new Player(this,keyH);
 	
 	public SuperObject obj[] = new SuperObject[10];
-	// we can display up to 10 objects at the same time
+	// we can display up to 10 objects at the same time.
 	
 	
 	// Main
