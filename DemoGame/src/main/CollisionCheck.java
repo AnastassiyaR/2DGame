@@ -12,7 +12,7 @@ public class CollisionCheck {
 	
 	public void checkTile(Entity entity) {
 		
-		// Formulas.
+		// Formulas of collisions.
 		int entityleftworldx = entity.worldX + entity.solidArea.x;
 		int entityrightworldy = entity.worldX + entity.solidArea.x + entity.solidArea.width;
 		int entitytopworldy = entity.worldY + entity.solidArea.y;
