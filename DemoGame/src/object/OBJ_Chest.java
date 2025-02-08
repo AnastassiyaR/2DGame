@@ -8,7 +8,6 @@ public class OBJ_Chest extends SuperObject{
 
 	public OBJ_Chest() {
 		
-		
 		name = "Chest";
 		
 		// REMEMBER THIS IMAGE STUFF TRY/CATCH

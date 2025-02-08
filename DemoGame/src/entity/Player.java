@@ -19,6 +19,7 @@ public class Player extends Entity{
 	
 	public final int screenX;
 	public final int screenY;
+	int hasKey = 0; // How many keys player has
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		
@@ -30,6 +31,8 @@ public class Player extends Entity{
 		
 		solidArea = new Rectangle(8,16,32,32);  // that red square
 		// or solidArea.x = 0, solidarea.width = 48; 48 - 32 = 16
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 		
 		setDefaultValues();
 		getPlayerImage();
@@ -76,9 +79,13 @@ public class Player extends Entity{
 	 			direction = "right";
 	 		}
 	 		
-			// Check collision
-			collisionOn = false;
+			// Check tile collision
+			collisionOn = false; // if remove person after collision can not move
 			gp.checker.checkTile(this);
+			
+			// CHECK OBJECT COLLISION
+			int objIndex = gp.checker.checkObject(this, true);
+			pickUpObject(objIndex);
 			
 			if(collisionOn == false) {
 				
@@ -102,6 +109,34 @@ public class Player extends Entity{
 	 		}
  		}
 	}
+	
+	public void pickUpObject (int i) {
+		
+		if(i != 999) {
+			// delete object we touch
+			// gp.obj[i] = null;
+			
+			String objectName = gp.obj[i].name;
+			
+			switch(objectName) {
+			case "Key":
+				gp.obj[i] = null;
+				hasKey++;
+				System.out.println("Key: " +hasKey);
+				break;
+			case "Door":
+				if(hasKey > 0) {
+					gp.obj[i] = null;
+					hasKey--;
+					System.out.println("Key: " +hasKey);
+				}
+				System.out.println("Key: " +hasKey);
+				break;
+			}
+
+		}
+	}
+	
 	public void draw(Graphics2D g2) {
 		
 //		g2.setColor(Color.white);
