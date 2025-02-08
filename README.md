@@ -3,3 +3,5 @@ A simple pixel-based game where the player explores the world and fight with mon
 
 # About the project
 This project was developed using Java and Eclipse, following a tutorial. I have added comments throughout the work for explaination to myself.
+
+# Experience
