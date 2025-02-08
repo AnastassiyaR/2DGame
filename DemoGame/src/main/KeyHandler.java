@@ -4,10 +4,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
-	// 'implements' to make the class implement the interface.
+	// 'implements' refers to making the class implement the interface.
 
 	public boolean upPressed, downPressed, leftPressed, rightPressed;
-	@Override
+	GamePanel gp;
+	
+	
+	public KeyHandler(GamePanel gp) {
+		this.gp = gp;
+		
+	}
+	@Override // it automatically appeared after typing KeyEvent
 	public void keyTyped(KeyEvent e) {
 	}
 
@@ -29,6 +36,15 @@ public class KeyHandler implements KeyListener{
 		}
 		if(code == KeyEvent.VK_A) {
 			leftPressed = true;
+		}
+		
+		// PAUSE
+	 	if(code == KeyEvent.VK_F) {
+			if(gp.gameState == gp.playState) {
+				gp.gameState = gp.pauseState;
+			} else if(gp.gameState == gp.pauseState) {
+				gp.gameState = gp.playState;
+			}
 		}
 		
 	}

@@ -57,7 +57,6 @@ public class TileManager {
 		setup(24, "water12", true);
 		setup(25, "water13", true);
 		
-		// ROAD
 		setup(26, "road00", false);
 		setup(27, "road01", false);
 		setup(28, "road02", false);
@@ -72,14 +71,11 @@ public class TileManager {
 		setup(37, "road11", false);
 		setup(38, "road12", false);
 		
-		setup(39, "earth", true);
+		setup(39, "earth", false);
 		setup(40, "wall", true);
 		setup(41, "tree", true);
-
-
 		
 
-		
 //		try {
 //
 //			tile[0] = new Tile();

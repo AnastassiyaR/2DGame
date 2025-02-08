@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable{
 			
 	// SYSTEM
 	TileManager tileM = new TileManager(this);
-	KeyHandler keyH = new KeyHandler();
+	KeyHandler keyH = new KeyHandler(this);
 	Sound music = new Sound();
 	Sound se = new Sound();
 	public CollisionCheck checker = new CollisionCheck(this);
@@ -48,8 +48,12 @@ public class GamePanel extends JPanel implements Runnable{
 	public Player player = new Player(this,keyH);
 	public SuperObject obj[] = new SuperObject[10]; // we can display up to 10 objects at the same time.
 	
+	// GAME STATE
+	public int gameState;
+	public final int playState = 1;
+	public final int pauseState = 2;
 	
-	// Main
+	// GAMEPANEL
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the class JPanel
 		this.setBackground(new Color(173, 216, 230));
@@ -62,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		aSetter.setObject();
 		playMusic(0);
+		gameState = playState;
 		
 	}
 	
@@ -144,7 +149,13 @@ public class GamePanel extends JPanel implements Runnable{
  	}
  	
  	public void update() {
- 		player.update();
+ 		
+ 		if(gameState == playState) {
+ 			player.update();
+ 		}
+ 		if(gameState == pauseState) {
+ 			// nothing
+ 		}
  	}
  	
  	
