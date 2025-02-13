@@ -49,7 +49,7 @@ public class UI {
 			drawPauseScreen();
 		}
 		if(gameFinished == true) {
-			
+			gp.playSE(4);
 			String text;
 			int textLength;
 			int x;
