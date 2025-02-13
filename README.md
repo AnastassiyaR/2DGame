@@ -2,7 +2,7 @@
 A simple pixel-based game where the player explores the world and fights monsters.
 
 ## About project
-The game was created using a tutorial by **RyiSnow** who perfectly explained how to build the game. However,it also include my changes such as additional text and small design edition.
+The game was created using a tutorial by **RyiSnow** who perfectly explained how to build the game. However,it also include my changes such as additional text and design edition.
 
 ## Project Goal
 The goal of this project was to get familiar with game development and gain experience in Java. 
